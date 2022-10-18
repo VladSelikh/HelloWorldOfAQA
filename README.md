@@ -7,4 +7,4 @@ Follow the steps described below. </br>
 Run command `npm install` from root directory and wait for the dependencies to be installed.
 
 # Tests running:
-Run command `npm run test` for tests to be run.
+Run command `npm run test-api` for tests to be run.
