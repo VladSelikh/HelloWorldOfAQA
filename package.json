@@ -1,0 +1,32 @@
+{
+  "name": "helloworldofaqa",
+  "version": "1.0.0",
+  "description": "AQA API Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladSelikh/HelloWorldOfAQA.git"
+  },
+  "keywords": [
+    "api",
+    "typescript",
+    "axios",
+    "mocha"
+  ],
+  "author": "VladSelikh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladSelikh/HelloWorldOfAQA/issues"
+  },
+  "homepage": "https://github.com/VladSelikh/HelloWorldOfAQA#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
