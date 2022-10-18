@@ -1,4 +1,3 @@
-# Hello-world
+# Hello-world-of-AQA
 
-Just another repository
 Hello, my name is Vlad!
