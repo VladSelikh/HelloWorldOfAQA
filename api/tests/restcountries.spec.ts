@@ -9,7 +9,7 @@ import { AxiosResponse } from "axios";
 let response: AxiosResponse;
 let neighbors: string[];
 
-const CODES_TO_CHECK = ["AZE", "BHS", "BHR", "BGD", "BRB", "BLR", "RUS"];
+const CODES_TO_CHECK = ["AZE", "BLR", "RUS"];
 
 describe("Rest Countries service tests", () => {
   describe(`${METHODS.GET} method`, () => {
@@ -28,31 +28,31 @@ describe("Rest Countries service tests", () => {
         neighbors = response.data[0].borders;
 
         if (neighbors) {
-          let response: AxiosResponse;
+          let responseForNeighBors: AxiosResponse;
 
           for (const neighbor of neighbors) {
             try {
-              response = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbor } });
+              responseForNeighBors = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbor } });
             } catch (err: any) {
               throw new Error(err.message);
             }
 
-            expect(response.status).to.equal(200);
-            validateSchema(getCountryByCodeSchema, response.data);
+            expect(responseForNeighBors.status).to.equal(200);
+            validateSchema(getCountryByCodeSchema, responseForNeighBors.data);
 
-            expect(response.data[0].borders).to.include(code, `${neighbor} country has no borders with ${code}`);
+            expect(responseForNeighBors.data[0].borders).to.include(code, `${neighbor} country has no borders with ${code}`);
           }
 
           try {
-            response = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbors.join(",") } });
+            responseForNeighBors = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbors.join(",") } });
           } catch (err: any) {
             throw new Error(err.message);
           }
 
-          expect(response.status).to.equal(200);
-          validateSchema(getCountryByCodeSchema, response.data);
+          expect(responseForNeighBors.status).to.equal(200);
+          validateSchema(getCountryByCodeSchema, responseForNeighBors.data);
 
-          response.data.forEach((countryData: any) => {
+          responseForNeighBors.data.forEach((countryData: any) => {
             expect(countryData.borders).to.include(code, `${countryData.alpha3Code} country has no borders with ${code}`);
           });
         }
