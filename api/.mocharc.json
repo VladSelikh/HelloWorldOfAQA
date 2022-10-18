@@ -1,0 +1,12 @@
+{
+  "extension": ["ts"],
+  "spec": ["**/api/tests/**/*.spec.ts"],
+  "require": ["ts-node/register"],
+  "reporter": "mochawesome",
+  "reporter-option": [
+    "reportTitle=Test Counties API Tests",
+    "reportFilename=report",
+    "reportDir=api/report"
+  ],
+  "timeout": 5000
+}
