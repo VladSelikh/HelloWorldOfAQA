@@ -28,7 +28,27 @@ describe("Rest Countries service tests", () => {
         neighbors = response.data[0].borders;
 
         if (neighbors) {
-          const response = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbors.join(",") } });
+          let response: AxiosResponse;
+
+          for (const neighbor of neighbors) {
+            try {
+              response = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbor } });
+            } catch (err: any) {
+              throw new Error(err.message);
+            }
+
+            expect(response.status).to.equal(200);
+            validateSchema(getCountryByCodeSchema, response.data);
+
+            expect(response.data[0].borders).to.include(code, `${neighbor} country has no borders with ${code}`);
+          }
+
+          try {
+            response = await client.request(METHODS.GET, { url: endpointToCheck, params: { codes: neighbors.join(",") } });
+          } catch (err: any) {
+            throw new Error(err.message);
+          }
+
           expect(response.status).to.equal(200);
           validateSchema(getCountryByCodeSchema, response.data);
 
